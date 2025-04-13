@@ -2,50 +2,51 @@
 
 ## Description
 
-This Python script reads a Microsoft Word `.docx` file, applies hardcoded formatting rules, and saves the corrected version as another `.docx` file.
+This Python script reads a Microsoft Word `.docx` file, applies hardcoded formatting rules, and generates a corrected `.docx` file.
 
-This solution uses the `pywin32` library to automate Microsoft Word. It does not use `python-docx` or any AI/LLM APIs.
+It uses `pywin32` to control Microsoft Word via COM automation. It does **not** use `python-docx`, AI, or LLMs.
 
 ---
 
 ## Tasks Performed
 
 ### Task 1: Language & Spelling
-
-- Converts American English (e.g., "organize") to British English ("organise").
-- Replaces "eg" with "for example" (only outside quotes).
-- Preserves text inside quotation marks.
-- Leaves proper nouns like "World Health Organization" unchanged.
+- Converts "organize", "organizes", etc. → British English equivalents (e.g., "organise").
+- Replaces "eg" with "for example" (only outside quotation marks).
+- Skips content inside quotes.
+- Preserves proper nouns such as "World Health Organization".
 
 ### Task 2: Names and Acronyms
-
-- First mention: full name with title (e.g., Dr Manmohan Singh).
-- Subsequent mentions: shortened to title + last name (e.g., Dr Singh).
-- If two people share the same last name, full names are used to avoid confusion.
-- Periods are added to initials (e.g., Franklin D. Roosevelt).
+- First mention: full name (e.g., Dr Manmohan Singh).
+- Later mentions: shortened to "Dr Singh".
+- If two people share a last name (e.g., Nawaz and Shehbaz Sharif), full names are retained.
+- Adds periods to initials (e.g., Franklin D Roosevelt → Franklin D. Roosevelt).
 
 ---
 
-## How to Run
+## Requirements
 
-### 1. Requirements
-
-- **Windows OS**
-- **Microsoft Word** (installed)
+- Windows OS
+- Microsoft Word (installed and activated)
 - Python 3.x
-- Install `pywin32`:
+- `pywin32` library
 
+## Install required package
 ```bash
 pip install pywin32
+```
 
-
-### 2. Run the script in terminal:
-
-'''bash
+### Run the script with your input and output Word files
+```bash
 python format_text.py input.docx output.docx
+```
+# Example:
+```bash
+python format_text.py input.docx output.docx
+```
+We can also use the absolute path considering both the input.docx and output.docx are in the same folder and same path as the main folder
 
-### 3. Open output.docx to see the corrected text.
 
-Open Word → paste the final **"Corrected:"** content (you pasted above) → Save as:
+
 
 
