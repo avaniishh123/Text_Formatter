@@ -2,9 +2,20 @@
 
 ## Description
 
-This Python script reads a Microsoft Word `.docx` file, applies hardcoded formatting rules, and generates a corrected `.docx` file.
+This Python script reads a Microsoft Word `.docx` file, processes its entire text content using hardcoded rules, and generates a new `.docx` file with corrections applied.
 
-It uses `pywin32` to control Microsoft Word via COM automation. It does **not** use `python-docx`, AI, or LLMs.
+It uses the `pywin32` library to automate Microsoft Word through COM. No AI models, APIs, or external libraries like `python-docx` are used.
+
+The formatting rules are:
+- Apply UK spelling (e.g., "organize" → "organise")
+- Replace "eg" with "for example" (only outside quotes)
+- Skip modifications inside quotation marks
+- Preserve proper nouns like "World Health Organization"
+- Add periods to initials (e.g., "D" → "D.")
+- Shorten names after their first full mention (e.g., "Dr Manmohan Singh" → "Dr Singh")
+- If two people share the same last name (e.g., Nawaz and Shehbaz Sharif), keep full names to avoid confusion
+
+The corrected document is saved as a new Word file with the prefix `Corrected:` at the top.
 
 ---
 
@@ -42,11 +53,7 @@ python format_text.py input.docx output.docx
 ```
 # Example:
 ```bash
-python format_text.py input.docx output.docx
+python "absolute_path\format_text.py" "absolute_path\input.docx" "absolute_path\output.docx"
 ```
-We can also use the absolute path considering both the input.docx and output.docx are in the same folder and same path as the main folder
-
-
-
-
+We can also use the absolute path here to run the script considering both the input.docx and output.docx are in the same folder and same path as the main folder
 
